@@ -12,25 +12,17 @@ const StudentContextProvider = ({ children }) =>
   const toggleFavorite = (id) =>
    {
     const student = students.find((student) => student.id === id);
-    if (!student) return;
-
-    const isFavorite = favorites.some((favorite) => favorite.id === id);
-    if (isFavorite) {
-      setFavorites(favorites.filter((favorite) => favorite.id !== id));
-    } else {
+    {
       setFavorites([...favorites, student]);
     }
-    
-  };
+   };
 
   const removeFavorite = (id) => {
     setFavorites(favorites.filter((favorite) => favorite.id !== id));
   };
 
   return (
-    <StudentContext.Provider
-      value={{ students, favorites, toggleFavorite, removeFavorite }}
-    >
+    <StudentContext.Provider value={{ students, favorites, toggleFavorite, removeFavorite }} >
       {children}
     </StudentContext.Provider>
   );
